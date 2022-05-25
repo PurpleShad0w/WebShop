@@ -1,0 +1,11 @@
+Thania :
+ - articles
+
+Katia :
+ - login
+ - registration
+ - database
+
+Octave :
+ - homepage
+ - navigation
