@@ -40,19 +40,21 @@
 			password VARCHAR(255) NOT NULL,
 			created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 		)";
+
+		
+		if ($conn->query($sql) === TRUE) {
+			echo "Table UsersTab created successfully";
+			} else {
+			echo "Error creating table: " . $conn->error;
+		}
+
 		$sql="CREATE TABLE items(
 			id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 			name VARCHAR(100),
 			price VARCHAR(100),
 			image VARCHAR(100)
 			)";
-		
-		$sql="INSERT INTO `items` (`id`, `name`, `price`, `image`) VALUES
-		(1, 'watch1', '100', '1.jpeg'),
-		(2, 'watch2', '120', '2.jpg'),
-		(3, 'watch3', '150', '3.jpeg'),
-		(4, 'phone', '200', '4.jfif');
-		COMMIT;";
+
 
 
 		if ($conn->query($sql) === TRUE) {
@@ -74,11 +76,13 @@
 			die("ERROR: Could not connect. " . mysqli_connect_error());
 		} 
 
+		$sql="INSERT INTO `items` (`id`, `name`, `price`, `image`) VALUES
+  			(1, 'watch1', '100', '1.jpeg'),
+			(2, 'watch2', '120', '2.jpg'),
+			(3, 'watch3', '150', '3.jpeg'),
+			(4, 'phone', '200', '4.jfif')";
 
 ?>
-
-
-
 
 </body>
 </html>

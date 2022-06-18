@@ -14,6 +14,7 @@ $output = " ";
   	$output .= "No Item";
   }
 
+  
 
   while ($row = mysqli_fetch_array($res)) {
 
