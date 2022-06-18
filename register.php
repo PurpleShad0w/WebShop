@@ -51,17 +51,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($username_err) ){
         //Create Random Password
         
-    //     $alphabet = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ0123456789";
-    //      for ($i = 0; $i < 8; $i++) {
-    //          $n = rand(0, 59);
-    //          $pass[$i] = $alphabet[$n];
-    //      }
-    //      $password= $pass[0].$pass[1]. $pass[2]. $pass[3]. $pass[4]. $pass[5]. $pass[6]. $pass[7]."!";
+        $alphabet = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ0123456789";
+         for ($i = 0; $i < 8; $i++) {
+             $n = rand(0, 59);
+             $pass[$i] = $alphabet[$n];
+         }
+         $password= $pass[0].$pass[1]. $pass[2]. $pass[3]. $pass[4]. $pass[5]. $pass[6]. $pass[7]."!";
         
-    //    mail( 'eleoctave95@gmail.com', "Temporary Password", "hello" );
+        mail( "iis20118@uom.edu.gr", "Temporary Password", "assword");
         
 
-       $password="dokimi!";
+      // $password="dokimi!";
         $sql = "INSERT INTO usersTab (username, password) VALUES (?,?)";
          
         if($stmt = mysqli_prepare($link, $sql)){

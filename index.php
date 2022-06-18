@@ -7,7 +7,9 @@
 </head>
 <body>
 
-	<?php include("include/header.php"); ?>
+	<?php 
+  require_once "configfile.php"; 
+  include("include/header.php"); ?>
 
 	<div class="container">
 		<div class="col-md-12">

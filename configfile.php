@@ -16,19 +16,19 @@
 		if (!$conn) {
 		die("Connection failed: " . mysqli_connect_error());
 		}
-		$sql = "CREATE DATABASE registeredUsersDB";
+		$sql = "CREATE DATABASE DB";
 		if (mysqli_query($conn, $sql)) {
 		echo "Database created successfully";
 		} else {
 		//echo "Error creating database: " . mysqli_error($conn);
 		}
-		mysqli_close($conn);
+		// mysqli_close($conn);
 
 
 		$servername = "localhost";
 		$username = "root";
 		$password = "";
-		$dbname = "registeredUsersDB";
+		$dbname = "DB";
 		$conn = new mysqli($servername, $username, $password, $dbname);
 
 		if ($conn->connect_error) {
@@ -40,18 +40,35 @@
 			password VARCHAR(255) NOT NULL,
 			created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 		)";
+		$sql="CREATE TABLE items(
+			id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+			name VARCHAR(100),
+			price VARCHAR(100),
+			image VARCHAR(100)
+			)";
+		
+		$sql="INSERT INTO `items` (`id`, `name`, `price`, `image`) VALUES
+		(1, 'watch1', '100', '1.jpeg'),
+		(2, 'watch2', '120', '2.jpg'),
+		(3, 'watch3', '150', '3.jpeg'),
+		(4, 'phone', '200', '4.jfif');
+		COMMIT;";
+
+
 		if ($conn->query($sql) === TRUE) {
 		echo "Table UsersTab created successfully";
 		} else {
-		//echo "Error creating table: " . $conn->error;
+		echo "Error creating table: " . $conn->error;
 		}
+		
+
 		$conn->close();
 
 
 		define('DB_SERVER', 'localhost');
 		define('DB_USERNAME', 'root');
 		define('DB_PASSWORD', '');
-		define('DB_NAME', 'registeredUsersDB');
+		define('DB_NAME', 'DB');
 		$link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 		if($link === false){
 			die("ERROR: Could not connect. " . mysqli_connect_error());

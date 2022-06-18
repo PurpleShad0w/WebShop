@@ -1,11 +1,11 @@
 <?php 
 
-include("include/connection.php");
 
+require_once "configfile.php";
 
 
 $query = "SELECT * FROM items"; 
-$res = mysqli_query($connect,$query);
+$res = mysqli_query($link,$query);
 
 $output = " ";
 
