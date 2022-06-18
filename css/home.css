@@ -1,0 +1,18 @@
+.welcome {
+    text-align: center;
+    margin: auto;
+    width: 50%;
+}
+
+body {
+    background-color: rgb(159, 128, 104);
+}
+
+.carousel-inner {
+    width:100%;
+    max-height: 100vh;
+}
+
+.carousel-inner img {
+    width:100%;
+}
