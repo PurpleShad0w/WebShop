@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Log in or Sign up!</title>
-<link rel="stylesheet" href="register.css">
+<link rel="stylesheet" href="css/register.css">
 <title>Registration</title>
 
 </head>
@@ -51,14 +51,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($username_err) ){
         //Create Random Password
         
-       $alphabet = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ0123456789";
-        for ($i = 0; $i < 8; $i++) {
-            $n = rand(0, 59);
-            $pass[$i] = $alphabet[$n];
-        }
-        $password= $pass[0].$pass[1]. $pass[2]. $pass[3]. $pass[4]. $pass[5]. $pass[6]. $pass[7]. 
+    //     $alphabet = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ0123456789";
+    //      for ($i = 0; $i < 8; $i++) {
+    //          $n = rand(0, 59);
+    //          $pass[$i] = $alphabet[$n];
+    //      }
+    //      $password= $pass[0].$pass[1]. $pass[2]. $pass[3]. $pass[4]. $pass[5]. $pass[6]. $pass[7]."!";
         
-        //$password="dokimi";
+    //    mail( 'eleoctave95@gmail.com', "Temporary Password", "hello" );
+        
+
+       $password="dokimi!";
         $sql = "INSERT INTO usersTab (username, password) VALUES (?,?)";
          
         if($stmt = mysqli_prepare($link, $sql)){
@@ -77,18 +80,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 ?>
 <div class="wrapper">
-        <h2>Registration!</h2>
-        <p>Please fill this form to create an account.</p>
+<img src="img/userIcon.png" >
+        <h2>Sign Up</h2>
+        <p>Please fill in your email to create an account.</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group">
                 <label>Username</label>
                 <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
-                <span class="invalid-feedback"><?php echo $username_err; ?></span>
+                <br><span class="invalid-feedback"><?php echo $username_err; ?></span>
             </div>    
-            <h3>You will be sent an email with your temporary password! Log in!</h3>
-            <div class="form-group">
-                <input type="submit" class="+" value="Send Email">
-                
+            
+            
+             <div class="form-group">
+                <input type="submit" class="button" value="Send Email">
             </div>
             <p>Already have an account? <a href="loginPage.php">Login here</a>.</p>
         </form>

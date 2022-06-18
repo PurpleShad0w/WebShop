@@ -20,7 +20,7 @@
 		if (mysqli_query($conn, $sql)) {
 		echo "Database created successfully";
 		} else {
-		echo "Error creating database: " . mysqli_error($conn);
+		//echo "Error creating database: " . mysqli_error($conn);
 		}
 		mysqli_close($conn);
 
@@ -43,7 +43,7 @@
 		if ($conn->query($sql) === TRUE) {
 		echo "Table UsersTab created successfully";
 		} else {
-		echo "Error creating table: " . $conn->error;
+		//echo "Error creating table: " . $conn->error;
 		}
 		$conn->close();
 
