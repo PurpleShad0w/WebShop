@@ -42,6 +42,7 @@
 		// )";
 
 		
+<<<<<<< HEAD
 		// if ($conn->query($sql) === TRUE) {
 		// 	echo "Table UsersTab created successfully";
 		// 	} else {
@@ -59,7 +60,75 @@
         if($link === false){
             die("ERROR: Could not connect. " . mysqli_connect_error());
         }
+=======
+		if ($conn->query($sql) === TRUE) {
+			//echo "Table UsersTab created successfully";
+			} else {
+			//echo "Error creating table: " . $conn->error;
+		}
 
+		$sql="CREATE TABLE items(
+			id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+			name VARCHAR(100),
+			price VARCHAR(100),
+			image VARCHAR(100)
+			)";
+
+
+
+		if ($conn->query($sql) === TRUE) {
+			//echo "Table UsersTab created successfully";
+		} else {
+			//echo "Error creating table: " . $conn->error;
+		}
+
+		$sql="CREATE TABLE orders(
+			id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+			products VARCHAR(200),
+			clientID INT
+			totalCost VARCHAR(200)
+			)";
+
+
+
+		if ($conn->query($sql) === TRUE) {
+			//echo "Table UsersTab created successfully";
+		} else {
+			//echo "Error creating table: " . $conn->error;
+		}
+		
+
+		
+
+
+		define('DB_SERVER', 'localhost');
+		define('DB_USERNAME', 'root');
+		define('DB_PASSWORD', '');
+		define('DB_NAME', 'DB');
+		$link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+		if($link === false){
+			die("ERROR: Could not connect. " . mysqli_connect_error());
+		} 
+
+		$sql="INSERT INTO items (id, name, price, image) VALUES
+  			(1, 'watch1', '100', '1.jpeg'),
+			(2, 'watch2', '120', '2.jpg'),
+			(3, 'watch3', '150', '3.jpeg'),
+			(4, 'phone', '200', '4.jfif'),
+			(5, 'cable1', '20', '5.jpg'),
+			(6, 'cable2', '30', '6.jpg'),
+			(7, 'camera', '670', '7.jpg'),
+			(8, 'laptop', '879', '8.jpg'),
+			(9, 'mouse', '35', '9.jpg')";
+>>>>>>> 34cf7358aefe71bd77e05e4b2d8e2f4e568f96ed
+
+		if ($conn->query($sql) === TRUE) {
+			//echo "New record created successfully";
+		} else {
+			//echo "Error: " . $sql . "<br>" . $conn->error;
+		}
+
+		$conn->close();
 ?>
 
 </body>
