@@ -14,6 +14,28 @@
 </head>
 
 <body>
+     <?php
+        session_start();
+        require_once "configfile.php";
+        // if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+        //     header("location: loginPage.php");
+        //     exit;
+        // }
+
+        $registeredUser = $_SESSION["id"];
+        $sql = "SELECT username FROM userstab WHERE id= $registeredUser";
+        $result = $conn->query($sql); 
+        if ($result->num_rows > 0) { 
+            // output data of each row 
+            while($row = $result->fetch_assoc()) { 
+            $registeredUserName= $row["username"]; 
+            } 
+           } else { 
+            echo "No corresponding user"; 
+           } 
+           $conn->close();
+                
+    ?>
     <div class="topnav">
         <a class="active" href="home.html">Home Page</a>
         <a href="index.php">Browse</a>
@@ -23,11 +45,8 @@
             <span class="badge badge-light">0</span>
         </a>
     </div>
-    <div class="welcome">Welcome Mr. / Mrs. X, you were last online on <b>X-day - XX.XX.XXXX.</b></div>
+    <div class="welcome">Welcome Mr. / Mrs. <b><?php echo $registeredUserName?></b>, you were last online on <b>X-day - XX.XX.XXXX.</b></div>
     <div class="welcome">
-        <?php
-
-        ?>
     </div>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">

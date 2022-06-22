@@ -61,7 +61,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 							if($lastchar=="!"){
                                 header("location:reset-password.php");
                             }else {
-                            header("location: home.html");
+                            header("location: home.php");
                             }
 
                         } else{
