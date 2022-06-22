@@ -43,9 +43,9 @@
 
 		
 		if ($conn->query($sql) === TRUE) {
-			echo "Table UsersTab created successfully";
+			//echo "Table UsersTab created successfully";
 			} else {
-			echo "Error creating table: " . $conn->error;
+			//echo "Error creating table: " . $conn->error;
 		}
 
 		$sql="CREATE TABLE items(
@@ -58,13 +58,28 @@
 
 
 		if ($conn->query($sql) === TRUE) {
-		echo "Table UsersTab created successfully";
+			//echo "Table UsersTab created successfully";
 		} else {
-		echo "Error creating table: " . $conn->error;
+			//echo "Error creating table: " . $conn->error;
+		}
+
+		$sql="CREATE TABLE orders(
+			id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+			products VARCHAR(200),
+			clientID INT
+			totalCost VARCHAR(200)
+			)";
+
+
+
+		if ($conn->query($sql) === TRUE) {
+			//echo "Table UsersTab created successfully";
+		} else {
+			//echo "Error creating table: " . $conn->error;
 		}
 		
 
-		$conn->close();
+		
 
 
 		define('DB_SERVER', 'localhost');
@@ -76,12 +91,24 @@
 			die("ERROR: Could not connect. " . mysqli_connect_error());
 		} 
 
-		$sql="INSERT INTO `items` (`id`, `name`, `price`, `image`) VALUES
+		$sql="INSERT INTO items (id, name, price, image) VALUES
   			(1, 'watch1', '100', '1.jpeg'),
 			(2, 'watch2', '120', '2.jpg'),
 			(3, 'watch3', '150', '3.jpeg'),
-			(4, 'phone', '200', '4.jfif')";
+			(4, 'phone', '200', '4.jfif'),
+			(5, 'cable1', '20', '5.jpg'),
+			(6, 'cable2', '30', '6.jpg'),
+			(7, 'camera', '670', '7.jpg'),
+			(8, 'laptop', '879', '8.jpg'),
+			(9, 'mouse', '35', '9.jpg')";
 
+		if ($conn->query($sql) === TRUE) {
+			//echo "New record created successfully";
+		} else {
+			//echo "Error: " . $sql . "<br>" . $conn->error;
+		}
+
+		$conn->close();
 ?>
 
 </body>
