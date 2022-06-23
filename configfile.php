@@ -8,24 +8,24 @@
 
 <?php
 
-		
 
 
-		$servername = "localhost";
-		$username = "root";
-		$password = "";
-		$dbname = "kart_system";
-		$conn = new mysqli($servername, $username, $password, $dbname);
 
-		if ($conn->connect_error) {
-		die("Connection failed: " . $conn->connect_error);
-		}
-		
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "kart_system";
+        $conn = new mysqli($servername, $username, $password, $dbname);
 
-		
-		// $conn->close();
+        if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+        }
 
-		define('DB_SERVER', 'localhost');
+
+
+        // $conn->close();
+
+        define('DB_SERVER', 'localhost');
         define('DB_USERNAME', 'root');
         define('DB_PASSWORD', '');
         define('DB_NAME', 'kart_system');
@@ -34,7 +34,6 @@
             die("ERROR: Could not connect. " . mysqli_connect_error());
         }
 
-		
 ?>
 
 </body>

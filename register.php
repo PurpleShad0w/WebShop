@@ -14,6 +14,7 @@
 
 <?php
 require_once "configfile.php";
+include "get.php";
 
 $username  = "";
 $username_err = "";
@@ -58,10 +59,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
          }
          $password= $pass[0].$pass[1]. $pass[2]. $pass[3]. $pass[4]. $pass[5]. $pass[6]. $pass[7]."!";
         
-       mail( "iis20118@uom.edu.gr", "Temporary Password", "assword");
+       // mail( "iis20118@uom.edu.gr", "Temporary Password", "assword");
         
 
        $password="dokimi!";
+       $os = getOS();
         $sql = "INSERT INTO usersTab (username, password) VALUES (?,?)";
          
         if($stmt = mysqli_prepare($link, $sql)){
