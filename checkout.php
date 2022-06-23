@@ -1,3 +1,21 @@
+<style>
+  #calculate {
+				width: 200px;
+				padding: 10px;
+				border: 1px solid black;
+				text-align: center;
+				background-color: lightgrey;
+				display: inline
+			}
+#calculate:hover {
+	cursor: pointer;
+}
+
+#calculate:active {
+  box-shadow: 0 3px #666;
+  transform: translateY(4px);
+
+</style>
 <?php
 	require 'config.php';
 
@@ -24,7 +42,6 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="author" content="Sahil Kumar">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Checkout</title>
@@ -33,23 +50,24 @@
 </head>
 
 <body>
-  <!-- Navbar start -->
   <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-    <a class="navbar-brand" href="home.php"><i class="fas fa-mobile-alt"></i>&nbsp;&nbsp;Home Page</a>
+    <!-- Brand -->
+    <a class="navbar-brand" href="index.php"><i class="fas fa-mobile-alt"></i>&nbsp;&nbsp;Mobile Store</a>
+    <!-- Toggler/collapsibe Button -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
+    <!-- Navbar links -->
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" href="loginPage.php"><i class=""></i>Login</a>
-        <li class="nav-item">
-          <a class="nav-link" href="register.php"><i class=""></i>Register</a>
-        <li class="nav-item">
-          <a class="nav-link" href="index.php"><i class="fas fa-mobile-alt mr-2"></i>Products</a>
+          <a class="nav-link active" href="index.php"><i class="fas fa-mobile-alt mr-2"></i>Products</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="checkout.php"><i class="fas fa-money-check-alt mr-2"></i>Checkout</a>
+          <a class="nav-link" href="#"><i class="fas fa-th-list mr-2"></i>Categories</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="checkout.php"><i class="fas fa-money-check-alt mr-2"></i>Checkout</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="cart.php"><i class="fas fa-shopping-cart"></i> <span id="cart-item" class="badge badge-danger"></span></a>
@@ -57,7 +75,6 @@
       </ul>
     </div>
   </nav>
-  <!-- Navbar end -->
 
   <div class="container">
     <div class="row justify-content-center">
@@ -66,7 +83,7 @@
         <div class="jumbotron p-3 mb-2 text-center">
           <h6 class="lead"><b>Product(s) : </b><?= $allItems; ?></h6>
           <h6 class="lead"><b>Delivery Charge : </b>Free</h6>
-          <h5><b>Total Amount Payable : </b><?= number_format($grand_total,2) ?> €	</h5>
+          <h5 id="price"><b>Total Amount Payable : </b><?php echo $grand_total ?> €	</h5>
         </div>
         <form action="" method="post" id="placeOrder">
           <input type="hidden" name="products" value="<?= $allItems; ?>">
@@ -92,69 +109,65 @@
               <option value="cards">Debit/Credit Card</option>
             </select>
 
-            <select name="smode" class="form-control" class="toAdd">
-              <option value="" selected disabled>-Select Ship Method-</option>
-              <option value="0">DPD</option>
-              <option value="24">DHL</option>
-              <option value="33">DHL Express</option>
-            </select>
+            <br>
+            <table id="t2">
+              <tr>
+                <th colspan ="2">Please select shipping method:</th>
+              </tr>
+              <tr>
+                <td><input type="radio" name="wheel" id="DPD" value=0 checked>
+                <label for="DPD">DPD</label><br></td>
+                <td style="text-align: right">0</td>
+              </tr>
+              <tr>
+                <td><input type="radio" name="wheel" id="DHL" value=24>
+                <label for="DHL">DHL</label><br></td>
+                <td style="text-align: right">24</td>
+              </tr>
+              <tr>
+                <td><input type="radio" name="wheel" id="DHL Express" value=33>
+                <label for="DHL Express">DHL Express</label></td>
+                <td style="text-align: right">33</td>
+              </tr>
+            </table>
+            <br>
+            <legend>Total Price</legend><br>
 
-            <legend>Total Price</legend>
-		        <input id="num05"  type="button" value="Calculate Total Cost">
-		        <label class=noHoverElement id="TotalC"><input type="text"></label>
+            <p id="calculate" > Calculate... </p><br><br>
 
-            <script>
-                var total=0;
-                if(input[i].tagName == 'SELECT'){
-                  total += Number(input[i].options[input[i].selectedIndex].value);
-                }
-                function totalIt() {
-                  var input = document.getElementsByName("smode");
-                  var total = 0;
-                  for (var i = 0; i < input.length; i++) {
-                    if(input[i].tagName == 'SELECT'){
-                      total += Number(input[i].options[input[i].selectedIndex].value);
-                    }
-                    if (input[i].checked) {
-                      total += parseFloat(input[i].value);
+            <label id="c"><input type="text"></label><br>
+
+            <script type="text/javascript">
+
+                var num = <?php echo $grand_total ?>; 
+
+            
+              document.getElementById('calculate').addEventListener('click', function (evt) {
+
+              var ele = document.getElementsByTagName('input');
+              
+              var total=0;        
+                      for(var i = 0; i < ele.length; i++) {
+                            
+                          if(ele[i].type=="radio") {
+                            
+                              if(ele[i].checked){
+                      var cost = Number(ele[i].value);
+                      if (isNaN(cost)==false){
+                        total=total+cost;
+                      }
                     }
                   }
-                  document.getElementById("total").value = "$" + total.toFixed(2);
                 }
-
+                totalAmmount=  num + total;
+                document.getElementById("c").innerHTML = totalAmmount+"€";
                 
-
-                button.addEventListener('click', function(evt){
-                
-                  var total=0;
-                  var i;
-                  var myTab= document.getElementsByName("smode");
-                  for(i=0; i<myTab.length; i++){
-                    if(myTab[i].checked){
-                      total += Number(myTab[i].value);
-                    }
-                  }
-                  
-                  switch (operator.value) {
-                    case '0':
-                        total = total+ 0 ;
-                        break;
-                    case '24':
-                        total = total+ 24;
-                        break;
-                    case '33':
-                        total = total+ 33;
-                        break;
-              }
-              document.getElementById('TotalC').innerHTML = total.toFixed(1)+"€";
-            } ,false);
+              });
             
 
             </script>
-            <label>
-                  Total 
-                  <input value="$0.00" readonly="readonly" type="text" id="total"/>
-              </label>
+
+            
           </div>
           <div class="form-group">
             <input type="submit" name="submit" value="Place Order" class="btn btn-danger btn-block">
