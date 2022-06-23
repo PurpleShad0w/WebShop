@@ -22,18 +22,18 @@
         //     exit;
         // }
 
-        $registeredUser = $_SESSION["id"];
-        $sql = "SELECT username FROM userstab WHERE id= $registeredUser";
-        $result = $conn->query($sql); 
-        if ($result->num_rows > 0) { 
-            // output data of each row 
-            while($row = $result->fetch_assoc()) { 
-            $registeredUserName= $row["username"]; 
-            } 
-           } else { 
-            echo "No corresponding user"; 
-           } 
-           $conn->close();
+        $registeredUserName = $_SESSION["username"];
+        // $sql = "SELECT username FROM userstab WHERE id= $registeredUser";
+        // $result = $conn->query($sql); 
+        // if ($result->num_rows > 0) { 
+        //     // output data of each row 
+        //     while($row = $result->fetch_assoc()) { 
+        //     $registeredUserName= $row["username"]; 
+        //     } 
+        //    } else { 
+        //     echo "No corresponding user"; 
+        //    } 
+        //    $conn->close();
                 
     ?>
     <div class="topnav">
@@ -41,6 +41,7 @@
         <a href="index.php">Browse</a>
         <a href="loginPage.php">Login</a>
         <a href="register.php">Register</a>
+        <a href="allOrders.php">Previous Orders</a>
         <a href="cart.php">Cart
             <span class="badge badge-light">0</span>
         </a>
