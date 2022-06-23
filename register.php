@@ -61,8 +61,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         
        // mail( "iis20118@uom.edu.gr", "Temporary Password", "assword");
         
-
-       $password="dokimi!";
+      // $password="dokimi!";
        $os = getOS();
         $sql = "INSERT INTO usersTab (username, password) VALUES (?,?)";
          
@@ -71,7 +70,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
              $param_username = $username;
             $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
              if(mysqli_stmt_execute($stmt)){
-                header("location: loginPage.php");
+              //  header("location: loginPage.php");
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
             }
@@ -91,11 +90,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
                 <br><span class="invalid-feedback"><?php echo $username_err; ?></span>
             </div>    
+            <div>
+            <label>Temporary Password:</label>
+               <input type="text" value="<?php echo $password; ?>">
+            </div>
+           
             
             
              <div class="form-group">
-                <input type="submit" class="button" value="Send Email">
+                <input type="submit" class="button" value="Send Email" >
             </div>
+            
             <p>Already have an account? <a href="loginPage.php">Login here</a>.</p>
         </form>
     </div> 

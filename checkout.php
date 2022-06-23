@@ -30,7 +30,8 @@
 
 <?php
 	require 'config.php';
-
+  session_start();
+    $email= $_SESSION["username"];
 	$grand_total = 0;
 	$allItems = '';
 	$items = [];
@@ -87,7 +88,7 @@
         <h4 class="text-center text-info p-2">Complete your order!</h4>
         <div class="jumbotron p-3 mb-2 text-center">
           <h6 class="lead"><b>Product(s) : </b><?= $allItems; ?></h6>
-          <h6 class="lead"><b>Delivery Charge : </b>Free</h6>
+         
           <h5 id="price"><b>Total Amount Payable : </b><?php echo $grand_total ?> €	</h5>
         </div>
         <form action="" method="post" id="placeOrder">
@@ -97,7 +98,7 @@
             <input type="text" name="name" class="form-control" placeholder="Enter Name" required>
           </div>
           <div class="form-group">
-            <input type="email" name="email" class="form-control" placeholder="Enter E-Mail" required>
+            <input type="text" name="email" class="form-control" value="<?php echo $email?>" required>
           </div>
           <div class="form-group">
             <input type="tel" name="phone" class="form-control" placeholder="Enter Phone" required>

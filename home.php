@@ -68,7 +68,7 @@
     </div>
   </nav>
   <!-- Navbar end -->
-    <div class="welcome">Welcome Mr. / Mrs. <b><?php echo $registeredUserName?></b>, you were last online on <b>X-day - XX.XX.XXXX.</b></div>
+    <div class="welcome">Welcome Mr. / Mrs. <b><?php echo $registeredUserName?></b></div>
     <div class="welcome">
     </div>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">

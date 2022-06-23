@@ -28,10 +28,14 @@
 
     border: none;
     color: white;
-    padding: 16px 32px;
+    padding: 8px;
     text-decoration: none;
-    margin: 4px 2px;
     cursor: pointer;
+}
+.tdclass{
+    border: 1px solid #ddd;
+  padding: 8px;
+
 }
 #customers td, #customers th {
   border: 1px solid #ddd;
@@ -100,40 +104,10 @@
                 <th><b>Products</b></th>
                 <th><b>Amount Paid</b></th>
              </tr>
-             <?php
-                // require 'config.php';
-                //     function clickMe(){
-                //      $stmt = $conn->prepare('INSERT INTO orders (name,email,phone,address,pmode,products,amount_paid)VALUES(?,?,?,?,?,?,?)');
-                //     $stmt->bind_param('sssssss',$name,$email,$phone,$address,$pmode,$orderProducts,$amount_paid);
-                //     $stmt->execute();
-                //   };
-             ?>
-                <script>
-                    $(document).ready(function(){
-                    $('.button').click(function(){
-                        var clickBtnValue = $(this).val();
-                        var ajaxurl = 'newOrder.php',
-                        data =  {'action': clickBtnValue};
-                        $.post(ajaxurl, data, function (response) {
-                            // Response div goes here.
-                            alert("action performed successfully");
-                        });
-                    });
-                });
-                </script>
-
-                <?php
-                    if (isset($_POST['action'])) 
-                                clickMe();
-                                
-                        
-                    }
-                    ?>
+             
             <?php
             while($row = $result->fetch_assoc()) {
                 
-                
-
 
 
                 $email= $row["email"]; 
@@ -147,11 +121,10 @@
                 if($email==$registeredUserEmail){ ?>
                     
                     <tr>
-                        
-                        <td><?=$id;?></td>
-                        <td><?=$orderProducts;?></td>
-                        <td><?=$amount_paid;?></td>
-                        <td><input type="submit" id="buyButton" name="clickMe" value="clickMe"> </td> 
+                        <td class="tdclass"><?=$id;?></td>
+                        <td class="tdclass" ><?=$orderProducts;?></td>
+                        <td class="tdclass"><?=$amount_paid;?></td>
+                        <td class="tdclass"><a id="buyButton" name="clickMe" href="thankyoupage.php">BUY AGAIN</td> 
                     
                     </tr>
                
@@ -159,47 +132,17 @@
 
                     
                 }
+            }
             
             ?> </table><?php 
             
-        }
+       
            //echo $allorders;
            $conn->close();
+
+        }
     ?>
 
-  <script type="text/javascript">
-  $(document).ready(function() {
-
-    // Sending Form data to the server
-    $("#placeOrder").submit(function(e) {
-      e.preventDefault();
-      $.ajax({
-        url: 'action.php',
-        method: 'post',
-        data: $('form').serialize() + "&action=order",
-        success: function(response) {
-          $("#order").html(response);
-        }
-      });
-    });
-
-    // Load total no.of items added in the cart and display in the navbar
-    load_cart_item_number();
-
-    function load_cart_item_number() {
-      $.ajax({
-        url: 'action.php',
-        method: 'get',
-        data: {
-          cartItem: "cart_item"
-        },
-        success: function(response) {
-          $("#cart-item").html(response);
-        }
-      });
-    }
-  });
-  </script>
-
+  
 
 </body>
