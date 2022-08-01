@@ -124,7 +124,7 @@
                         <td class="tdclass"><?=$id;?></td>
                         <td class="tdclass" ><?=$orderProducts;?></td>
                         <td class="tdclass"><?=$amount_paid;?></td>
-                        <td class="tdclass"><a id="buyButton" name="clickMe" href="thankyoupage.php">BUY AGAIN</td> 
+                        <td class="tdclass"><a id="buyButton" name="clickMe" href="thankyoupage.html">BUY AGAIN</td> 
                     
                     </tr>
                
